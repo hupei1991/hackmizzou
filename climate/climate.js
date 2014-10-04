@@ -5,7 +5,7 @@
 This basic climate example logs a stream
 of temperature and humidity to the console.
 *********************************************/
-$(document).ready(function(){
+
 var tessel = require('tessel');
 // if you're using a si7020 replace this lib with climate-si7020
 var climatelib = require('climate-si7020');
@@ -20,24 +20,10 @@ climate.on('ready', function () {
   setImmediate(function loop () {
     climate.readTemperature('f', function (err, temp) {
       climate.readHumidity(function (err, humid) {
-         http.get("http://localhost/" + temp.toFixed(4) + "/" + humid.toFixed(4), function (res) {
-		    console.log('# statusCode', res.statusCode)
-
-		    var bufs = [];
-		    res.on('data', function (data) {
-		      bufs.push(new Buffer(data));
-		      console.log('# received', new Buffer(data).toString());
-		    })
-		    res.on('close', function () {
-		      console.log('done.');
-		      setImmediate(loop);
-		    })
-		  }
-		  )
-        .on('error', function (e) {
-		    console.log('not ok -', e.message, 'error event')
-		    setImmediate(loop);
-		  });
+        var data = 'Degrees:' + temp.toFixed(4) + 'F' + 'Humidity:' + humid.toFixed(4) + '%RH';
+		$.post('/output.html',function(data){
+			$("#test").html(data);
+		});
         setTimeout(loop, 300);
       });
     });
@@ -46,5 +32,4 @@ climate.on('ready', function () {
 
 climate.on('error', function(err) {
   console.log('error connecting module', err);
-});
 });
