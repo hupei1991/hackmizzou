@@ -21,9 +21,7 @@ climate.on('ready', function () {
     climate.readTemperature('f', function (err, temp) {
       climate.readHumidity(function (err, humid) {
         // console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
-		data .= 'Degrees:'+ temp.toFixed(4) + 'F' + 'Humidity:'+ humid.toFixed(4) + '%RH';
-		url = "output.html?data="+data.toString();
-		window.open(url,'_blank');
+		document.getElementById("test").innerHTML = 'Degrees:' + temp.toFixed(4) + 'F' + 'Humidity:' + humid.toFixed(4) + '%RH';
         setTimeout(loop, 300);
       });
     });
@@ -33,3 +31,6 @@ climate.on('ready', function () {
 climate.on('error', function(err) {
   console.log('error connecting module', err);
 });
+<html>
+	<p id = "test"></p>
+</html>
