@@ -5,7 +5,7 @@
 This basic climate example logs a stream
 of temperature and humidity to the console.
 *********************************************/
-
+$(document).ready(function(){
 var tessel = require('tessel');
 // if you're using a si7020 replace this lib with climate-si7020
 var climatelib = require('climate-si7020');
@@ -31,6 +31,4 @@ climate.on('ready', function () {
 climate.on('error', function(err) {
   console.log('error connecting module', err);
 });
-<html>
-	<p id = "test"></p>
-</html>
+});
