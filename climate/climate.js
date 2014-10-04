@@ -14,7 +14,7 @@ var climate = climatelib.use(tessel.port['A']);
 
 
 climate.on('ready', function () {
-  console.log('Connected to si7005');
+  console.log('Connected to si7020');
 
   // Loop forever
   setImmediate(function loop () {
