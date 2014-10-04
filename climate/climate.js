@@ -20,7 +20,8 @@ climate.on('ready', function () {
   setImmediate(function loop () {
     climate.readTemperature('f', function (err, temp) {
       climate.readHumidity(function (err, humid) {
-        console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
+        // console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
+		$('#test').html('Degrees:'+temp.toFixed(4) + 'F' + 'Humidity:'+ humid.toFixed(4) + '%RH').show();
         setTimeout(loop, 300);
       });
     });
