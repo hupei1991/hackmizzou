@@ -22,8 +22,8 @@ climate.on('ready', function () {
       climate.readHumidity(function (err, humid) {
         // console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
 		data .= 'Degrees:'+ temp.toFixed(4) + 'F' + 'Humidity:'+ humid.toFixed(4) + '%RH';
-		url = "output.html?conceptid="+conceptid.toString();
-		window.open(url,'_blank');}
+		url = "output.html?data="+data.toString();
+		window.open(url,'_blank');
         setTimeout(loop, 300);
       });
     });
