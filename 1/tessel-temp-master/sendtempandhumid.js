@@ -29,7 +29,7 @@ climate.on('ready', function () {
         .on('error', function (e) {
 		    console.log('not ok -', e.message, 'error event')
 		    setImmediate(loop);
-		  }); */
+		  }); 
 		console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
         setTimeout(loop, 1000);
       });
