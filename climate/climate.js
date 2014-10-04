@@ -21,7 +21,9 @@ climate.on('ready', function () {
     climate.readTemperature('f', function (err, temp) {
       climate.readHumidity(function (err, humid) {
         // console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
-		$('#test').html('Degrees:'+temp.toFixed(4) + 'F' + 'Humidity:'+ humid.toFixed(4) + '%RH').show();
+		data .= 'Degrees:'+ temp.toFixed(4) + 'F' + 'Humidity:'+ humid.toFixed(4) + '%RH';
+		url = "output.html?conceptid="+conceptid.toString();
+		window.open(url,'_blank');}
         setTimeout(loop, 300);
       });
     });
