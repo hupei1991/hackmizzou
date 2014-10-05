@@ -1,7 +1,7 @@
 // Taken from Tessel.io wifi and climate examples
 
-var app = require('express')();
-var http = require('http').Server(app);
+// var app = require('express')();
+var http = require('http');
 var io = require('socket.io')(http);
 var tessel = require('tessel');
 
