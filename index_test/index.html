@@ -74,6 +74,7 @@
 <script>
     var socket = io();
     socket.on('tesselreceive', function(tempAndHumid) {
+        console.log(tempAndHumid);
 		var currentTemp = $("#tempCell").text();
 		var currentHumid = $("#humidCell").text();
 		var currentLight = $("#lightCell").text();
