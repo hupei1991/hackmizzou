@@ -11,6 +11,8 @@ var request = require('request');
 var climate = climatelib.use(tessel.port['A']);
 var ambient = ambientlib.use(tessel.port['B']);
 
+var data;
+
 /*setImmediate(function loop () {
 	climate.on('ready', function () {
 	  	console.log('Connected to si7020');
@@ -58,7 +60,8 @@ climate.on('ready', function () {
 							ambient.getSoundLevel( function(err, sdata) {
 								if (err) throw err;
 								console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH', 'Light level:', ldata.toFixed(8), " ", "Sound Level:", sdata.toFixed(8));
-								request.post('http://requestb.in/15gylj71', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8) }}); 	 
+								data .= JSON.stringify({humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8)});
+								request.post('http://requestb.in/15gylj71', data); 	
 							});
 						});
 					});
