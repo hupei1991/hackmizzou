@@ -6,7 +6,7 @@ var io = require('socket.io')(http);
 var tessel = require('tessel');
 
 app.get('/', function(req, res){
-  res.sendfile('index.html');
+  res.sendfile('http://bluefly.cloudapp.net/tessel-temp/public/','index.html');
 });
 
  var climatelib = require('climate-si7020');
@@ -41,10 +41,7 @@ climate.on('ready', function () {
 								//request.post('http://requestb.in/1bnme981', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8) }}); 							
 								
 								io.on('connection', function(socket){
-									console.log('a user connected');
-								});
-								http.listen(3000, function(){
-								console.log('listening on *:3000');
+									socket.emit('tesselreceive',{hello:'world'});
 								});
 							});
 						});
