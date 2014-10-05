@@ -1,7 +1,13 @@
 // Taken from Tessel.io wifi and climate examples
 
-var http = require('http');
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var tessel = require('tessel');
+
+app.get('/', function(req, res){
+  res.sendfile('index.html');
+});
 
  var climatelib = require('climate-si7020');
 var ambientlib = require('ambient-attx4');
@@ -31,9 +37,15 @@ climate.on('ready', function () {
 								console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH', 'Light level:', ldata.toFixed(8), " ", "Sound Level:", sdata.toFixed(8));
 								//data .= JSON.stringify({humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8)});
 								//request.post('http://requestb.in/15gylj71', data); 
-								request.post('http://bluefly.cloudapp.net/data', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8) }}); 
+								/* request.post('http://bluefly.cloudapp.net/data', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8) }});  */
 								//request.post('http://requestb.in/1bnme981', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4), lightlevel: ldata.toFixed(8), soundlevel: sdata.toFixed(8) }}); 							
-
+								
+								io.on('connection', function(socket){
+									console.log('a user connected');
+								});
+								http.listen(3000, function(){
+								console.log('listening on *:3000');
+								});
 							});
 						});
 					});
