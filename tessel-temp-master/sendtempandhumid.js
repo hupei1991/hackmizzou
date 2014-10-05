@@ -9,12 +9,15 @@ var climate = climatelib.use(tessel.port['A']);
 
 climate.on('ready', function () {
   	console.log('Connected to si7020');
-	climate.readTemperature('f', function (err, temp) {
-	  console.log("Read temp: " + temp.toFixed(4));
-	  climate.readHumidity(function (err, humid) {
-	    console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
-	    request.post('http://requestb.in/15gylj71', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4) }})
-	  });
+		setImmediate(function loop () {
+		climate.readTemperature('f', function (err, temp) {
+			console.log("Read temp: " + temp.toFixed(4));
+			climate.readHumidity(function (err, humid) {
+		    	console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
+		    	request.post('http://requestb.in/15gylj71', {json: {humidity: humid.toFixed(4), degrees: temp.toFixed(4) }});
+
+		  	});
+		});
 	});
 });
 
