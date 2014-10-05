@@ -1,0 +1,4 @@
+<Response>
+        <Say voice="alice">Wake up! Wake up! Wake up! Wake up! Wake up! Good Morning! Today is brilliant for fitness! </Say>        
+	<Play>http://bluefly.cloudapp.net/music/summer.mp3</Play>
+</Response>

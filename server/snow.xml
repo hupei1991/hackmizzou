@@ -1,0 +1,4 @@
+<Response>
+        <Say voice="alice">Wake up! Wake up! Wake up! Wake up! Wake up! Good Morning! Today is good for casual fitness! </Say>
+        <Play>http://bluefly.cloudapp.net/music/snow.mp3</Play>
+</Response>
